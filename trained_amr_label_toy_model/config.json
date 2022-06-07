@@ -91,7 +91,7 @@
                     "supertagging": 1
                 },
                 "name": "AMR-2017",
-                "output_null_lex_label": false,
+                "output_null_lex_label": true,
                 "supertagger": {
                     "label_namespace": "AMR-2017_supertag_labels",
                     "mlp": {

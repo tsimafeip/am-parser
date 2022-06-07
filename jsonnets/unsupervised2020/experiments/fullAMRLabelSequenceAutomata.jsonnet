@@ -7,11 +7,11 @@ local evaluate_on_test = true; # Whether to evaluate on the test set.
 
 
 #============FILEPATHS==============
-local train_zip_path = "ENTERPATH/train.zip";  
-local dev_zip_path = "ENTERPATH/dev.zip";
-local validation_amconll_path = "ENTERPATH/dev.amconll";
-local validation_gold_path = "ENTERPATH/gold_dev.txt";
-local test_triples_amconll_gold_suffix = [["ENTERPATH/test.amconll", "ENTERPATH/gold_test.txt", ""]];  # each triple consists of (a) path to amconll input for test set; (b) path to gold output for test set; (c) a suffix to be attached to the names of the evaluation metrics. Use multiple triples to evaluate on multiple test sets. In the regular case of just using one test set, use just one triple and the suffix can be the empty string.
+local train_zip_path = "../non-graph-formalisms-parsing/amr_labels_full/train.zip";  
+local dev_zip_path = "../non-graph-formalisms-parsing/amr_labels_full/dev.zip";
+local validation_amconll_path = "../non-graph-formalisms-parsing/amr_labels_full/dev.amconll";
+local validation_gold_path = "../non-graph-formalisms-parsing/amr_labels_full/gold_dev.txt";
+local test_triples_amconll_gold_suffix = [["../non-graph-formalisms-parsing/amr_labels_full/test.amconll", "../non-graph-formalisms-parsing/amr_labels_full/gold_test.txt", ""]];  # each triple consists of (a) path to amconll input for test set; (b) path to gold output for test set; (c) a suffix to be attached to the names of the evaluation metrics. Use multiple triples to evaluate on multiple test sets. In the regular case of just using one test set, use just one triple and the suffix can be the empty string.
 
 
 #=============IMPORTING MODEL AND FORMALISM CONFIGS==================

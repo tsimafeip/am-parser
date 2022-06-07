@@ -1,441 +1,828 @@
-2022-06-01 18:36:11,991 - INFO - pytorch_pretrained_bert.modeling - Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .
-2022-06-01 18:36:26,054 - INFO - allennlp.common.params - random_seed = 471754769
-2022-06-01 18:36:26,055 - INFO - allennlp.common.params - numpy_seed = 855525958
-2022-06-01 18:36:26,055 - INFO - allennlp.common.params - pytorch_seed = 73939138
-2022-06-01 18:36:26,182 - INFO - allennlp.common.checks - Pytorch version: 1.1.0
-2022-06-01 18:36:26,186 - INFO - allennlp.common.params - evaluate_on_test = False
-2022-06-01 18:36:26,186 - INFO - allennlp.common.params - test_evaluators = [[['AMR-2017', {'formalism': 'AMR-2017', 'gold_file': '', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'}, 'system_input': '', 'type': 'standard_evaluator'}]]]
-2022-06-01 18:36:26,186 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Evaluator'> from params {'formalism': 'AMR-2017', 'gold_file': '', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'}, 'system_input': '', 'type': 'standard_evaluator'} and extras set()
-2022-06-01 18:36:26,186 - INFO - allennlp.common.params - test_evaluators.0.0.1.type = standard_evaluator
-2022-06-01 18:36:26,186 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.StandardEvaluator'> from params {'formalism': 'AMR-2017', 'gold_file': '', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'}, 'system_input': ''} and extras set()
-2022-06-01 18:36:26,186 - INFO - allennlp.common.params - test_evaluators.0.0.1.formalism = AMR-2017
-2022-06-01 18:36:26,187 - INFO - allennlp.common.params - test_evaluators.0.0.1.system_input = 
-2022-06-01 18:36:26,187 - INFO - allennlp.common.params - test_evaluators.0.0.1.gold_file = 
-2022-06-01 18:36:26,187 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Predictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'} and extras set()
-2022-06-01 18:36:26,187 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.type = amconll_predictor
-2022-06-01 18:36:26,187 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.AMconllPredictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1} and extras set()
-2022-06-01 18:36:26,187 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.dataset_readers.dataset_reader.DatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'} and extras set()
-2022-06-01 18:36:26,187 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.type = amconll_unannotated
-2022-06-01 18:36:26,187 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.amconll.AMConllUnannotatedDatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}} and extras set()
-2022-06-01 18:36:26,187 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.token_indexer.TokenIndexer'> from params {'lowercase_tokens': True, 'type': 'single_id'} and extras set()
-2022-06-01 18:36:26,187 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.type = single_id
-2022-06-01 18:36:26,187 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer'> from params {'lowercase_tokens': True} and extras set()
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.namespace = tokens
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.lowercase_tokens = True
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.start_tokens = None
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.end_tokens = None
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.token_min_padding_length = 0
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.lazy = False
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.fraction = 1.0
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.only_read_fraction_if_train_in_filename = False
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.allow_copy_despite_sense = False
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.k = 4
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.give_up = 15
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.threads = 1
-2022-06-01 18:36:26,188 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.iterators.data_iterator.DataIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'} and extras set()
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.type = same_formalism
-2022-06-01 18:36:26,188 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.same_formalism_iterator.SameFormalismIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017']} and extras set()
-2022-06-01 18:36:26,188 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.formalisms = ['AMR-2017']
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.batch_size = 1
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.batch_sizes = None
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.cache_instances = False
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.track_epoch = False
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.padding_noise = 0.1
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.instances_per_epoch = None
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.max_instances_in_memory = None
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.maximum_samples_per_batch = None
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.biggest_batch_first = False
-2022-06-01 18:36:26,189 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BaseEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'} and extras set()
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.evaluation_command.type = bash_evaluation_command
-2022-06-01 18:36:26,189 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BashEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}} and extras set()
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.evaluation_command.command = java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.evaluation_command.show_output = True
-2022-06-01 18:36:26,189 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.batch_size = 64
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.give_up_k_1 = None
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - test_evaluators.0.0.1.use_from_epoch = 1
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - validation_dataset_reader = None
-2022-06-01 18:36:26,190 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.dataset_readers.dataset_reader.DatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_automata'} and extras set()
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.type = amconll_automata
-2022-06-01 18:36:26,190 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.amconll_automata.AMConllAutomataDatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}} and extras set()
-2022-06-01 18:36:26,190 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.token_indexer.TokenIndexer'> from params {'lowercase_tokens': True, 'type': 'single_id'} and extras set()
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.type = single_id
-2022-06-01 18:36:26,190 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer'> from params {'lowercase_tokens': True} and extras set()
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.namespace = tokens
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.lowercase_tokens = True
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.start_tokens = None
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.end_tokens = None
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.token_min_padding_length = 0
-2022-06-01 18:36:26,190 - INFO - allennlp.common.params - dataset_reader.lazy = False
-2022-06-01 18:36:26,191 - INFO - allennlp.common.params - dataset_reader.fraction = 1.0
-2022-06-01 18:36:26,191 - INFO - allennlp.common.params - dataset_reader.only_read_fraction_if_train_in_filename = False
-2022-06-01 18:36:26,191 - INFO - allennlp.common.params - dataset_reader.allow_copy_despite_sense = False
-2022-06-01 18:36:26,191 - INFO - allennlp.common.params - train_data_path = [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/train.zip']]
-2022-06-01 18:36:26,191 - INFO - allennlp.training.util - Reading training data from [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/train.zip']]
+2022-06-07 15:41:30,217 - INFO - pytorch_pretrained_bert.modeling - Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .
+2022-06-07 15:41:44,778 - INFO - allennlp.common.params - random_seed = 210283819
+2022-06-07 15:41:44,778 - INFO - allennlp.common.params - numpy_seed = 20586725
+2022-06-07 15:41:44,779 - INFO - allennlp.common.params - pytorch_seed = 435114578
+2022-06-07 15:41:45,333 - INFO - allennlp.common.checks - Pytorch version: 1.1.0
+2022-06-07 15:41:45,340 - INFO - allennlp.common.params - evaluate_on_test = False
+2022-06-07 15:41:45,340 - INFO - allennlp.common.params - test_evaluators = [[['AMR-2017', {'formalism': 'AMR-2017', 'gold_file': '', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'}, 'system_input': '', 'type': 'standard_evaluator'}]]]
+2022-06-07 15:41:45,340 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Evaluator'> from params {'formalism': 'AMR-2017', 'gold_file': '', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'}, 'system_input': '', 'type': 'standard_evaluator'} and extras set()
+2022-06-07 15:41:45,341 - INFO - allennlp.common.params - test_evaluators.0.0.1.type = standard_evaluator
+2022-06-07 15:41:45,341 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.StandardEvaluator'> from params {'formalism': 'AMR-2017', 'gold_file': '', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'}, 'system_input': ''} and extras set()
+2022-06-07 15:41:45,341 - INFO - allennlp.common.params - test_evaluators.0.0.1.formalism = AMR-2017
+2022-06-07 15:41:45,342 - INFO - allennlp.common.params - test_evaluators.0.0.1.system_input = 
+2022-06-07 15:41:45,342 - INFO - allennlp.common.params - test_evaluators.0.0.1.gold_file = 
+2022-06-07 15:41:45,342 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Predictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_predictor'} and extras set()
+2022-06-07 15:41:45,342 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.type = amconll_predictor
+2022-06-07 15:41:45,342 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.AMconllPredictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1} and extras set()
+2022-06-07 15:41:45,343 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.dataset_readers.dataset_reader.DatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'} and extras set()
+2022-06-07 15:41:45,343 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.type = amconll_unannotated
+2022-06-07 15:41:45,343 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.amconll.AMConllUnannotatedDatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}} and extras set()
+2022-06-07 15:41:45,343 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.token_indexer.TokenIndexer'> from params {'lowercase_tokens': True, 'type': 'single_id'} and extras set()
+2022-06-07 15:41:45,343 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.type = single_id
+2022-06-07 15:41:45,344 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer'> from params {'lowercase_tokens': True} and extras set()
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.namespace = tokens
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.lowercase_tokens = True
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.start_tokens = None
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.end_tokens = None
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.token_indexers.tokens.token_min_padding_length = 0
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.lazy = False
+2022-06-07 15:41:45,344 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.fraction = 1.0
+2022-06-07 15:41:45,345 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.only_read_fraction_if_train_in_filename = False
+2022-06-07 15:41:45,345 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.dataset_reader.allow_copy_despite_sense = False
+2022-06-07 15:41:45,345 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.k = 4
+2022-06-07 15:41:45,345 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.give_up = 15
+2022-06-07 15:41:45,345 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.threads = 1
+2022-06-07 15:41:45,345 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.iterators.data_iterator.DataIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'} and extras set()
+2022-06-07 15:41:45,346 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.type = same_formalism
+2022-06-07 15:41:45,346 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.same_formalism_iterator.SameFormalismIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017']} and extras set()
+2022-06-07 15:41:45,346 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.formalisms = ['AMR-2017']
+2022-06-07 15:41:45,346 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.batch_size = 1
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.batch_sizes = None
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.cache_instances = False
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.track_epoch = False
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.padding_noise = 0.1
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.instances_per_epoch = None
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.max_instances_in_memory = None
+2022-06-07 15:41:45,347 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.maximum_samples_per_batch = None
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.data_iterator.biggest_batch_first = False
+2022-06-07 15:41:45,348 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BaseEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'} and extras set()
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.evaluation_command.type = bash_evaluation_command
+2022-06-07 15:41:45,348 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BashEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}} and extras set()
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.evaluation_command.command = java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.evaluation_command.show_output = True
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.batch_size = 64
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.predictor.give_up_k_1 = None
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - test_evaluators.0.0.1.use_from_epoch = 1
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - validation_dataset_reader = None
+2022-06-07 15:41:45,348 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.dataset_readers.dataset_reader.DatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_automata'} and extras set()
+2022-06-07 15:41:45,348 - INFO - allennlp.common.params - dataset_reader.type = amconll_automata
+2022-06-07 15:41:45,349 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.amconll_automata.AMConllAutomataDatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}} and extras set()
+2022-06-07 15:41:45,349 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.token_indexer.TokenIndexer'> from params {'lowercase_tokens': True, 'type': 'single_id'} and extras set()
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.type = single_id
+2022-06-07 15:41:45,349 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer'> from params {'lowercase_tokens': True} and extras set()
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.namespace = tokens
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.lowercase_tokens = True
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.start_tokens = None
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.end_tokens = None
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.token_min_padding_length = 0
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.lazy = False
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.fraction = 1.0
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.only_read_fraction_if_train_in_filename = False
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - dataset_reader.allow_copy_despite_sense = False
+2022-06-07 15:41:45,349 - INFO - allennlp.common.params - train_data_path = [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/train.zip']]
+2022-06-07 15:41:45,349 - INFO - allennlp.training.util - Reading training data from [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/train.zip']]
 0it [00:00, ?it/s]
-2022-06-01 18:36:26,200 - INFO - graph_dependency_parser.components.dataset_readers.amconll_automata - Reading AM dependency trees from amconll dataset at: example/minimalAMRLabelSequenceAutomata/train.zip
-2022-06-01 18:36:26,318 - WARNING - allennlp.data.fields.sequence_label_field - Your label namespace was 'pos'. We recommend you use a namespace ending with 'labels' or 'tags', so we don't add UNK and PAD tokens by default to your vocabulary.  See documentation for `non_padded_namespaces` parameter in Vocabulary.
-2022-06-01 18:36:26,318 - WARNING - allennlp.data.fields.sequence_label_field - Your label namespace was 'lemmas'. We recommend you use a namespace ending with 'labels' or 'tags', so we don't add UNK and PAD tokens by default to your vocabulary.  See documentation for `non_padded_namespaces` parameter in Vocabulary.
-1it [00:00,  7.29it/s]
+2022-06-07 15:41:45,358 - INFO - graph_dependency_parser.components.dataset_readers.amconll_automata - Reading AM dependency trees from amconll dataset at: example/minimalAMRLabelSequenceAutomata/train.zip
+2022-06-07 15:41:45,460 - WARNING - allennlp.data.fields.sequence_label_field - Your label namespace was 'pos'. We recommend you use a namespace ending with 'labels' or 'tags', so we don't add UNK and PAD tokens by default to your vocabulary.  See documentation for `non_padded_namespaces` parameter in Vocabulary.
+2022-06-07 15:41:45,460 - WARNING - allennlp.data.fields.sequence_label_field - Your label namespace was 'lemmas'. We recommend you use a namespace ending with 'labels' or 'tags', so we don't add UNK and PAD tokens by default to your vocabulary.  See documentation for `non_padded_namespaces` parameter in Vocabulary.
+1it [00:00,  8.13it/s]
 
-2022-06-01 18:36:26,328 - INFO - allennlp.common.params - validation_data_path = [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/dev.zip']]
-2022-06-01 18:36:26,329 - INFO - allennlp.training.util - Reading validation data from [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/dev.zip']]
+2022-06-07 15:41:45,473 - INFO - allennlp.common.params - validation_data_path = [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/dev.zip']]
+2022-06-07 15:41:45,473 - INFO - allennlp.training.util - Reading validation data from [['AMR-2017', 'example/minimalAMRLabelSequenceAutomata/dev.zip']]
 0it [00:00, ?it/s]
-2022-06-01 18:36:26,329 - INFO - graph_dependency_parser.components.dataset_readers.amconll_automata - Reading AM dependency trees from amconll dataset at: example/minimalAMRLabelSequenceAutomata/dev.zip
-1it [00:00, 194.13it/s]
+2022-06-07 15:41:45,474 - INFO - graph_dependency_parser.components.dataset_readers.amconll_automata - Reading AM dependency trees from amconll dataset at: example/minimalAMRLabelSequenceAutomata/dev.zip
+1it [00:00, 193.03it/s]
 
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - test_data_path = None
-2022-06-01 18:36:26,334 - INFO - graph_dependency_parser.train.amtrainer - From dataset instances, train, validation will be considered for vocabulary creation.
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.type = None
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.extend = False
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.directory_path = None
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.max_vocab_size = None
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.non_padded_namespaces = ('*tags', '*labels')
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.min_pretrained_embeddings = None
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.only_include_pretrained_words = False
-2022-06-01 18:36:26,334 - INFO - allennlp.common.params - vocabulary.tokens_to_add = None
-2022-06-01 18:36:26,334 - INFO - allennlp.data.vocabulary - Fitting token dictionary from dataset.
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - test_data_path = None
+2022-06-07 15:41:45,479 - INFO - graph_dependency_parser.train.amtrainer - From dataset instances, train, validation will be considered for vocabulary creation.
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.type = None
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.extend = False
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.directory_path = None
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.max_vocab_size = None
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.non_padded_namespaces = ('*tags', '*labels')
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.min_pretrained_embeddings = None
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.only_include_pretrained_words = False
+2022-06-07 15:41:45,479 - INFO - allennlp.common.params - vocabulary.tokens_to_add = None
+2022-06-07 15:41:45,479 - INFO - allennlp.data.vocabulary - Fitting token dictionary from dataset.
 0it [00:00, ?it/s]
-2it [00:00, 27147.60it/s]
+2it [00:00, 25343.23it/s]
 
-2022-06-01 18:36:26,335 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.models.model.Model'> from params {'encoder': {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': [], 'type': 'shared_split_encoder'}, 'input_dropout': 0, 'lemma_embedding': {'embedding_dim': 2, 'vocab_namespace': 'lemmas'}, 'ne_embedding': {'embedding_dim': 2, 'vocab_namespace': 'ner_labels'}, 'pos_tag_embedding': {'embedding_dim': 2, 'vocab_namespace': 'pos'}, 'tasks': [{'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': False, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}}], 'text_field_embedder': {'tokens': {'embedding_dim': 8, 'type': 'embedding'}}, 'type': 'graph_dependency_parser_automata'} and extras {'vocab'}
-2022-06-01 18:36:26,335 - INFO - allennlp.common.params - model.type = graph_dependency_parser_automata
-2022-06-01 18:36:26,335 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.inside_maximization.graph_dependency_parser_automata.GraphDependencyParser'> from params {'encoder': {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': [], 'type': 'shared_split_encoder'}, 'input_dropout': 0, 'lemma_embedding': {'embedding_dim': 2, 'vocab_namespace': 'lemmas'}, 'ne_embedding': {'embedding_dim': 2, 'vocab_namespace': 'ner_labels'}, 'pos_tag_embedding': {'embedding_dim': 2, 'vocab_namespace': 'pos'}, 'tasks': [{'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': False, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}}], 'text_field_embedder': {'tokens': {'embedding_dim': 8, 'type': 'embedding'}}} and extras {'vocab'}
-2022-06-01 18:36:26,335 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.text_field_embedders.text_field_embedder.TextFieldEmbedder'> from params {'tokens': {'embedding_dim': 8, 'type': 'embedding'}} and extras {'vocab'}
-2022-06-01 18:36:26,335 - INFO - allennlp.common.params - model.text_field_embedder.type = basic
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.embedder_to_indexer_map = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.allow_unmatched_keys = False
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.token_embedders = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.token_embedders.token_embedder.TokenEmbedder'> from params {'embedding_dim': 8, 'type': 'embedding'} and extras {'vocab'}
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.type = embedding
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.num_embeddings = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.vocab_namespace = tokens
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.embedding_dim = 8
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.pretrained_file = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.projection_dim = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.trainable = True
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.padding_index = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.max_norm = None
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.norm_type = 2.0
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.scale_grad_by_freq = False
-2022-06-01 18:36:26,336 - INFO - allennlp.common.params - model.text_field_embedder.tokens.sparse = False
-2022-06-01 18:36:26,337 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.weight_sharer.MTLWeightSharer'> from params {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': [], 'type': 'shared_split_encoder'} and extras {'vocab'}
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - model.encoder.type = shared_split_encoder
-2022-06-01 18:36:26,337 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.weight_sharer.SharedDifferentEncoder'> from params {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': []} and extras {'vocab'}
-2022-06-01 18:36:26,337 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.seq2seq_encoders.seq2seq_encoder.Seq2SeqEncoder'> from params {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False} and extras {'vocab'}
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - model.encoder.encoder.type = stacked_bidirectional_lstm
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - model.encoder.encoder.batch_first = True
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - model.encoder.encoder.stateful = False
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - Converting Params object to dict; logging of default values will not occur when dictionary parameters are used subsequently.
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - CURRENTLY DEFINED PARAMETERS: 
-2022-06-01 18:36:26,337 - INFO - allennlp.common.params - model.encoder.encoder.hidden_size = 8
-2022-06-01 18:36:26,338 - INFO - allennlp.common.params - model.encoder.encoder.input_size = 14
-2022-06-01 18:36:26,338 - INFO - allennlp.common.params - model.encoder.encoder.layer_dropout_probability = 0
-2022-06-01 18:36:26,338 - INFO - allennlp.common.params - model.encoder.encoder.num_layers = 2
-2022-06-01 18:36:26,338 - INFO - allennlp.common.params - model.encoder.encoder.recurrent_dropout_probability = 0
-2022-06-01 18:36:26,338 - INFO - allennlp.common.params - model.encoder.encoder.use_highway = False
-2022-06-01 18:36:26,367 - INFO - allennlp.common.params - model.encoder.formalisms = ['AMR-2017']
-2022-06-01 18:36:26,368 - INFO - allennlp.common.params - model.encoder.formalisms_without_tagging = []
-2022-06-01 18:36:26,368 - INFO - allennlp.common.params - model.encoder.task_dropout = 0.0
-2022-06-01 18:36:26,370 - INFO - allennlp.common.params - model.tasks = [{'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': False, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}}]
-2022-06-01 18:36:26,370 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.inside_maximization.AMAutomataTask.AMAutomataTask'> from params {'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': False, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}} and extras {'vocab'}
-2022-06-01 18:36:26,370 - INFO - allennlp.common.params - model.tasks.0.name = AMR-2017
-2022-06-01 18:36:26,370 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.edge_models.base.EdgeModel'> from params {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'} and extras {'vocab'}
-2022-06-01 18:36:26,370 - INFO - allennlp.common.params - model.tasks.0.edge_model.type = kg_edges
-2022-06-01 18:36:26,370 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.edge_models.KG.KGEdges'> from params {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8} and extras {'vocab'}
-2022-06-01 18:36:26,371 - INFO - allennlp.common.params - model.tasks.0.edge_model.encoder_dim = 16
-2022-06-01 18:36:26,371 - INFO - allennlp.common.params - model.tasks.0.edge_model.label_dim = 8
-2022-06-01 18:36:26,371 - INFO - allennlp.common.params - model.tasks.0.edge_model.edge_dim = 8
-2022-06-01 18:36:26,371 - INFO - allennlp.common.params - model.tasks.0.edge_model.edge_label_namespace = AMR-2017_head_tags
-2022-06-01 18:36:26,371 - INFO - allennlp.common.params - model.tasks.0.edge_model.dropout = 0.0
-2022-06-01 18:36:26,371 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.base.EdgeLoss'> from params {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}} and extras {'vocab'}
-2022-06-01 18:36:26,371 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.base.EdgeExistenceLoss'> from params {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'} and extras {'vocab'}
-2022-06-01 18:36:26,371 - INFO - allennlp.common.params - model.tasks.0.loss_function.existence_loss.type = kg_edge_loss
-2022-06-01 18:36:26,371 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.KG.KGExistenceLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.loss_function.existence_loss.normalize_wrt_seq_len = False
-2022-06-01 18:36:26,372 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.base.EdgeLabelLoss'> from params {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'} and extras {'vocab'}
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.loss_function.label_loss.type = dm_label_loss
-2022-06-01 18:36:26,372 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.DM.DMLabelLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.loss_function.label_loss.normalize_wrt_seq_len = False
-2022-06-01 18:36:26,372 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.supertagger.Supertagger'> from params {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}} and extras {'vocab'}
-2022-06-01 18:36:26,372 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.feedforward.FeedForward'> from params {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1} and extras {'vocab'}
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.input_dim = 16
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.num_layers = 1
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.hidden_dims = [8]
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.hidden_dims = [8]
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.activations = tanh
-2022-06-01 18:36:26,372 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.dropout = [0]
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.dropout = [0]
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.supertagger.label_namespace = AMR-2017_supertag_labels
-2022-06-01 18:36:26,373 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.supertagger.Supertagger'> from params {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}} and extras {'vocab'}
-2022-06-01 18:36:26,373 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.feedforward.FeedForward'> from params {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1} and extras {'vocab'}
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.input_dim = 16
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.num_layers = 1
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.hidden_dims = [8]
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.hidden_dims = [8]
-2022-06-01 18:36:26,373 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.activations = tanh
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.dropout = [0]
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.dropout = [0]
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.label_namespace = AMR-2017_lex_labels
-2022-06-01 18:36:26,374 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.supertagging.SupertaggingLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.supertagger_loss.normalize_wrt_seq_len = False
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.supertagger_loss.label_smoothing = None
-2022-06-01 18:36:26,374 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.supertagging.SupertaggingLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.lexlabel_loss.normalize_wrt_seq_len = False
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.lexlabel_loss.label_smoothing = None
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.output_null_lex_label = False
-2022-06-01 18:36:26,374 - INFO - allennlp.common.params - model.tasks.0.all_automaton_loss = True
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.dropout = 0
-2022-06-01 18:36:26,375 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Evaluator'> from params {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10} and extras {'vocab'}
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.type = standard_evaluator
-2022-06-01 18:36:26,375 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.StandardEvaluator'> from params {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'use_from_epoch': 10} and extras {'vocab'}
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.formalism = AMR-2017
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.system_input = example/minimalAMRLabelSequenceAutomata/corpus.amconll
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.gold_file = example/minimalAMRLabelSequenceAutomata/gold.txt
-2022-06-01 18:36:26,375 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Predictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'} and extras {'vocab'}
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.type = amconll_automata_predictor
-2022-06-01 18:36:26,375 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.AMconllAutomataPredictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1} and extras {'vocab'}
-2022-06-01 18:36:26,375 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.dataset_readers.dataset_reader.DatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'} and extras {'vocab'}
-2022-06-01 18:36:26,375 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.type = amconll_unannotated
-2022-06-01 18:36:26,375 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.amconll.AMConllUnannotatedDatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}} and extras {'vocab'}
-2022-06-01 18:36:26,376 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.token_indexer.TokenIndexer'> from params {'lowercase_tokens': True, 'type': 'single_id'} and extras {'vocab'}
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.type = single_id
-2022-06-01 18:36:26,376 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer'> from params {'lowercase_tokens': True} and extras {'vocab'}
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.namespace = tokens
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.lowercase_tokens = True
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.start_tokens = None
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.end_tokens = None
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.token_min_padding_length = 0
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.lazy = False
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.fraction = 1.0
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.only_read_fraction_if_train_in_filename = False
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.allow_copy_despite_sense = False
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.k = 4
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.give_up = 15
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.threads = 1
-2022-06-01 18:36:26,376 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.iterators.data_iterator.DataIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'} and extras {'vocab'}
-2022-06-01 18:36:26,376 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.type = same_formalism
-2022-06-01 18:36:26,376 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.same_formalism_iterator.SameFormalismIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017']} and extras {'vocab'}
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.formalisms = ['AMR-2017']
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.batch_size = 1
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.batch_sizes = None
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.cache_instances = False
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.track_epoch = False
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.padding_noise = 0.1
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.instances_per_epoch = None
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.max_instances_in_memory = None
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.maximum_samples_per_batch = None
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.biggest_batch_first = False
-2022-06-01 18:36:26,377 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BaseEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'} and extras {'vocab'}
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.evaluation_command.type = bash_evaluation_command
-2022-06-01 18:36:26,377 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BashEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}} and extras {'vocab'}
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.evaluation_command.command = java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.evaluation_command.show_output = True
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.batch_size = 64
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.give_up_k_1 = None
-2022-06-01 18:36:26,377 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.use_from_epoch = 10
-2022-06-01 18:36:26,378 - INFO - graph_dependency_parser.inside_maximization.AMAutomataTask - Found POS tags corresponding to the following punctuation : {}. Ignoring words with these POS tags for evaluation.
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.num_embeddings = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.vocab_namespace = pos
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.embedding_dim = 2
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.pretrained_file = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.projection_dim = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.trainable = True
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.padding_index = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.max_norm = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.norm_type = 2.0
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.scale_grad_by_freq = False
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.pos_tag_embedding.sparse = False
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.num_embeddings = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.vocab_namespace = lemmas
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.embedding_dim = 2
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.pretrained_file = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.projection_dim = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.trainable = True
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.padding_index = None
-2022-06-01 18:36:26,378 - INFO - allennlp.common.params - model.lemma_embedding.max_norm = None
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.lemma_embedding.norm_type = 2.0
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.lemma_embedding.scale_grad_by_freq = False
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.lemma_embedding.sparse = False
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.num_embeddings = None
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.vocab_namespace = ner_labels
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.embedding_dim = 2
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.pretrained_file = None
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.projection_dim = None
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.trainable = True
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.padding_index = None
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.max_norm = None
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.norm_type = 2.0
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.scale_grad_by_freq = False
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.ne_embedding.sparse = False
-2022-06-01 18:36:26,379 - INFO - allennlp.common.params - model.input_dropout = 0
-2022-06-01 18:36:26,379 - INFO - allennlp.nn.initializers - Initializing parameters
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers - Done initializing parameters; the following parameters are using their default initialization from their code
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.arc_out_layer.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.child_arc_feedforward.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.child_label_feedforward.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_arc_feedforward.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_arc_feedforward.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_label_feedforward.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_label_feedforward.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.label_out_layer.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.label_out_layer.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.mlp._linear_layers.0.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.mlp._linear_layers.0.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.output_layer.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.output_layer.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.mlp._linear_layers.0.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.mlp._linear_layers.0.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.output_layer.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.output_layer.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    _head_sentinel
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    _lemma_embedding.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    _ne_embedding.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    _pos_tag_embedding.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,380 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.nn.initializers -    text_field_embedder.token_embedder_tokens.weight
-2022-06-01 18:36:26,381 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.iterators.data_iterator.DataIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'} and extras set()
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.type = same_formalism
-2022-06-01 18:36:26,382 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.same_formalism_iterator.SameFormalismIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017']} and extras set()
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.formalisms = ['AMR-2017']
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.batch_size = 1
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.batch_sizes = None
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.cache_instances = False
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.track_epoch = False
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.padding_noise = 0.1
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.instances_per_epoch = None
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.max_instances_in_memory = None
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.maximum_samples_per_batch = None
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - iterator.biggest_batch_first = False
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - validation_iterator = None
-2022-06-01 18:36:26,382 - INFO - allennlp.common.params - trainer.no_grad = ()
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - Following parameters are Frozen  (without gradient):
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - Following parameters are Tunable (with gradient):
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - _head_sentinel
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - text_field_embedder.token_embedder_tokens.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_0.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_0.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_0.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_1.input_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_1.state_linearity.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_1.state_linearity.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - _pos_tag_embedding.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - _lemma_embedding.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - _ne_embedding.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_arc_feedforward.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_arc_feedforward.bias
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.child_arc_feedforward.weight
-2022-06-01 18:36:26,383 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.arc_out_layer.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_label_feedforward.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_label_feedforward.bias
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.child_label_feedforward.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.label_out_layer.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.label_out_layer.bias
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.mlp._linear_layers.0.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.mlp._linear_layers.0.bias
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.output_layer.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.output_layer.bias
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.mlp._linear_layers.0.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.mlp._linear_layers.0.bias
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.output_layer.weight
-2022-06-01 18:36:26,384 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.output_layer.bias
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.patience = 1000
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.validation_metric = +AMR-2017_F
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.shuffle = True
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.num_epochs = 100
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.cuda_device = 1
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.grad_norm = None
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.grad_clipping = None
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.learning_rate_scheduler = None
-2022-06-01 18:36:26,384 - INFO - allennlp.common.params - trainer.momentum_scheduler = None
-2022-06-01 18:36:31,059 - INFO - allennlp.common.params - trainer.optimizer.type = adam
-2022-06-01 18:36:31,060 - INFO - allennlp.common.params - trainer.optimizer.parameter_groups = None
-2022-06-01 18:36:31,060 - INFO - allennlp.training.optimizers - Number of trainable parameters: 7129
-2022-06-01 18:36:31,061 - INFO - allennlp.common.params - trainer.optimizer.infer_type_and_cast = True
-2022-06-01 18:36:31,061 - INFO - allennlp.common.params - Converting Params object to dict; logging of default values will not occur when dictionary parameters are used subsequently.
-2022-06-01 18:36:31,061 - INFO - allennlp.common.params - CURRENTLY DEFINED PARAMETERS: 
-2022-06-01 18:36:31,061 - INFO - allennlp.common.params - trainer.optimizer.lr = 0.01
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.num_serialized_models_to_keep = 1
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.keep_serialized_model_every_num_seconds = None
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.model_save_interval = None
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.summary_interval = 100
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.histogram_interval = None
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.should_log_parameter_statistics = True
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.should_log_learning_rate = False
-2022-06-01 18:36:31,062 - INFO - allennlp.common.params - trainer.log_batch_size_period = None
-2022-06-01 18:36:31,150 - INFO - graph_dependency_parser.train.amtrainer - Beginning training.
-2022-06-01 18:36:31,150 - INFO - graph_dependency_parser.train.amtrainer - Epoch 0/99
-2022-06-01 18:36:31,150 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3246.156
-2022-06-01 18:36:31,410 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 2694
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
-2022-06-01 18:36:31,411 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
-2022-06-01 18:36:31,413 - INFO - graph_dependency_parser.train.amtrainer - Training
+2022-06-07 15:41:45,480 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.models.model.Model'> from params {'encoder': {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': [], 'type': 'shared_split_encoder'}, 'input_dropout': 0, 'lemma_embedding': {'embedding_dim': 2, 'vocab_namespace': 'lemmas'}, 'ne_embedding': {'embedding_dim': 2, 'vocab_namespace': 'ner_labels'}, 'pos_tag_embedding': {'embedding_dim': 2, 'vocab_namespace': 'pos'}, 'tasks': [{'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': True, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}}], 'text_field_embedder': {'tokens': {'embedding_dim': 8, 'type': 'embedding'}}, 'type': 'graph_dependency_parser_automata'} and extras {'vocab'}
+2022-06-07 15:41:45,480 - INFO - allennlp.common.params - model.type = graph_dependency_parser_automata
+2022-06-07 15:41:45,480 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.inside_maximization.graph_dependency_parser_automata.GraphDependencyParser'> from params {'encoder': {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': [], 'type': 'shared_split_encoder'}, 'input_dropout': 0, 'lemma_embedding': {'embedding_dim': 2, 'vocab_namespace': 'lemmas'}, 'ne_embedding': {'embedding_dim': 2, 'vocab_namespace': 'ner_labels'}, 'pos_tag_embedding': {'embedding_dim': 2, 'vocab_namespace': 'pos'}, 'tasks': [{'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': True, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}}], 'text_field_embedder': {'tokens': {'embedding_dim': 8, 'type': 'embedding'}}} and extras {'vocab'}
+2022-06-07 15:41:45,480 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.text_field_embedders.text_field_embedder.TextFieldEmbedder'> from params {'tokens': {'embedding_dim': 8, 'type': 'embedding'}} and extras {'vocab'}
+2022-06-07 15:41:45,480 - INFO - allennlp.common.params - model.text_field_embedder.type = basic
+2022-06-07 15:41:45,480 - INFO - allennlp.common.params - model.text_field_embedder.embedder_to_indexer_map = None
+2022-06-07 15:41:45,480 - INFO - allennlp.common.params - model.text_field_embedder.allow_unmatched_keys = False
+2022-06-07 15:41:45,480 - INFO - allennlp.common.params - model.text_field_embedder.token_embedders = None
+2022-06-07 15:41:45,480 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.token_embedders.token_embedder.TokenEmbedder'> from params {'embedding_dim': 8, 'type': 'embedding'} and extras {'vocab'}
+2022-06-07 15:41:45,480 - INFO - allennlp.common.params - model.text_field_embedder.tokens.type = embedding
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.num_embeddings = None
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.vocab_namespace = tokens
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.embedding_dim = 8
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.pretrained_file = None
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.projection_dim = None
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.trainable = True
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.padding_index = None
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.max_norm = None
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.norm_type = 2.0
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.scale_grad_by_freq = False
+2022-06-07 15:41:45,481 - INFO - allennlp.common.params - model.text_field_embedder.tokens.sparse = False
+2022-06-07 15:41:45,482 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.weight_sharer.MTLWeightSharer'> from params {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': [], 'type': 'shared_split_encoder'} and extras {'vocab'}
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - model.encoder.type = shared_split_encoder
+2022-06-07 15:41:45,482 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.weight_sharer.SharedDifferentEncoder'> from params {'encoder': {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False}, 'formalisms': ['AMR-2017'], 'formalisms_without_tagging': []} and extras {'vocab'}
+2022-06-07 15:41:45,482 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.seq2seq_encoders.seq2seq_encoder.Seq2SeqEncoder'> from params {'hidden_size': 8, 'input_size': 14, 'layer_dropout_probability': 0, 'num_layers': 2, 'recurrent_dropout_probability': 0, 'type': 'stacked_bidirectional_lstm', 'use_highway': False} and extras {'vocab'}
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - model.encoder.encoder.type = stacked_bidirectional_lstm
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - model.encoder.encoder.batch_first = True
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - model.encoder.encoder.stateful = False
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - Converting Params object to dict; logging of default values will not occur when dictionary parameters are used subsequently.
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - CURRENTLY DEFINED PARAMETERS: 
+2022-06-07 15:41:45,482 - INFO - allennlp.common.params - model.encoder.encoder.hidden_size = 8
+2022-06-07 15:41:45,483 - INFO - allennlp.common.params - model.encoder.encoder.input_size = 14
+2022-06-07 15:41:45,483 - INFO - allennlp.common.params - model.encoder.encoder.layer_dropout_probability = 0
+2022-06-07 15:41:45,483 - INFO - allennlp.common.params - model.encoder.encoder.num_layers = 2
+2022-06-07 15:41:45,483 - INFO - allennlp.common.params - model.encoder.encoder.recurrent_dropout_probability = 0
+2022-06-07 15:41:45,483 - INFO - allennlp.common.params - model.encoder.encoder.use_highway = False
+2022-06-07 15:41:45,515 - INFO - allennlp.common.params - model.encoder.formalisms = ['AMR-2017']
+2022-06-07 15:41:45,515 - INFO - allennlp.common.params - model.encoder.formalisms_without_tagging = []
+2022-06-07 15:41:45,515 - INFO - allennlp.common.params - model.encoder.task_dropout = 0.0
+2022-06-07 15:41:45,516 - INFO - allennlp.common.params - model.tasks = [{'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': True, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}}]
+2022-06-07 15:41:45,517 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.inside_maximization.AMAutomataTask.AMAutomataTask'> from params {'all_automaton_loss': True, 'dropout': 0, 'edge_model': {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'}, 'lexlabel_loss': {'normalize_wrt_seq_len': False}, 'lexlabeltagger': {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'loss_function': {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}}, 'loss_mixing': {'edge_existence': 1, 'edge_label': 1, 'lexlabel': 1, 'supertagging': 1}, 'name': 'AMR-2017', 'output_null_lex_label': True, 'supertagger': {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}}, 'supertagger_loss': {'normalize_wrt_seq_len': False}, 'validation_evaluator': {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10}} and extras {'vocab'}
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.name = AMR-2017
+2022-06-07 15:41:45,517 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.edge_models.base.EdgeModel'> from params {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8, 'type': 'kg_edges'} and extras {'vocab'}
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.edge_model.type = kg_edges
+2022-06-07 15:41:45,517 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.edge_models.KG.KGEdges'> from params {'edge_dim': 8, 'edge_label_namespace': 'AMR-2017_head_tags', 'encoder_dim': 16, 'label_dim': 8} and extras {'vocab'}
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.edge_model.encoder_dim = 16
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.edge_model.label_dim = 8
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.edge_model.edge_dim = 8
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.edge_model.edge_label_namespace = AMR-2017_head_tags
+2022-06-07 15:41:45,517 - INFO - allennlp.common.params - model.tasks.0.edge_model.dropout = 0.0
+2022-06-07 15:41:45,518 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.base.EdgeLoss'> from params {'existence_loss': {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'}, 'label_loss': {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'}} and extras {'vocab'}
+2022-06-07 15:41:45,518 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.base.EdgeExistenceLoss'> from params {'normalize_wrt_seq_len': False, 'type': 'kg_edge_loss'} and extras {'vocab'}
+2022-06-07 15:41:45,518 - INFO - allennlp.common.params - model.tasks.0.loss_function.existence_loss.type = kg_edge_loss
+2022-06-07 15:41:45,518 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.KG.KGExistenceLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
+2022-06-07 15:41:45,518 - INFO - allennlp.common.params - model.tasks.0.loss_function.existence_loss.normalize_wrt_seq_len = False
+2022-06-07 15:41:45,518 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.base.EdgeLabelLoss'> from params {'normalize_wrt_seq_len': False, 'type': 'dm_label_loss'} and extras {'vocab'}
+2022-06-07 15:41:45,518 - INFO - allennlp.common.params - model.tasks.0.loss_function.label_loss.type = dm_label_loss
+2022-06-07 15:41:45,518 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.DM.DMLabelLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
+2022-06-07 15:41:45,518 - INFO - allennlp.common.params - model.tasks.0.loss_function.label_loss.normalize_wrt_seq_len = False
+2022-06-07 15:41:45,518 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.supertagger.Supertagger'> from params {'label_namespace': 'AMR-2017_supertag_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}} and extras {'vocab'}
+2022-06-07 15:41:45,519 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.feedforward.FeedForward'> from params {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1} and extras {'vocab'}
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.input_dim = 16
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.num_layers = 1
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.hidden_dims = [8]
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.hidden_dims = [8]
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.activations = tanh
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.dropout = [0]
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.mlp.dropout = [0]
+2022-06-07 15:41:45,519 - INFO - allennlp.common.params - model.tasks.0.supertagger.label_namespace = AMR-2017_supertag_labels
+2022-06-07 15:41:45,520 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.supertagger.Supertagger'> from params {'label_namespace': 'AMR-2017_lex_labels', 'mlp': {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1}} and extras {'vocab'}
+2022-06-07 15:41:45,520 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.modules.feedforward.FeedForward'> from params {'activations': 'tanh', 'dropout': [0], 'hidden_dims': [8], 'input_dim': 16, 'num_layers': 1} and extras {'vocab'}
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.input_dim = 16
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.num_layers = 1
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.hidden_dims = [8]
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.hidden_dims = [8]
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.activations = tanh
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.dropout = [0]
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.mlp.dropout = [0]
+2022-06-07 15:41:45,520 - INFO - allennlp.common.params - model.tasks.0.lexlabeltagger.label_namespace = AMR-2017_lex_labels
+2022-06-07 15:41:45,521 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.supertagging.SupertaggingLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.supertagger_loss.normalize_wrt_seq_len = False
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.supertagger_loss.label_smoothing = None
+2022-06-07 15:41:45,521 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.losses.supertagging.SupertaggingLoss'> from params {'normalize_wrt_seq_len': False} and extras {'vocab'}
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.lexlabel_loss.normalize_wrt_seq_len = False
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.lexlabel_loss.label_smoothing = None
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.output_null_lex_label = True
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.all_automaton_loss = True
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.dropout = 0
+2022-06-07 15:41:45,521 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Evaluator'> from params {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'type': 'standard_evaluator', 'use_from_epoch': 10} and extras {'vocab'}
+2022-06-07 15:41:45,521 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.type = standard_evaluator
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.StandardEvaluator'> from params {'formalism': 'AMR-2017', 'gold_file': 'example/minimalAMRLabelSequenceAutomata/gold.txt', 'predictor': {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'}, 'system_input': 'example/minimalAMRLabelSequenceAutomata/corpus.amconll', 'use_from_epoch': 10} and extras {'vocab'}
+2022-06-07 15:41:45,522 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.formalism = AMR-2017
+2022-06-07 15:41:45,522 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.system_input = example/minimalAMRLabelSequenceAutomata/corpus.amconll
+2022-06-07 15:41:45,522 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.gold_file = example/minimalAMRLabelSequenceAutomata/gold.txt
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.Predictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1, 'type': 'amconll_automata_predictor'} and extras {'vocab'}
+2022-06-07 15:41:45,522 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.type = amconll_automata_predictor
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.predictors.AMconllAutomataPredictor'> from params {'data_iterator': {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'}, 'dataset_reader': {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'}, 'evaluation_command': {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'}, 'give_up': 15, 'k': 4, 'threads': 1} and extras {'vocab'}
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.dataset_readers.dataset_reader.DatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}, 'type': 'amconll_unannotated'} and extras {'vocab'}
+2022-06-07 15:41:45,522 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.type = amconll_unannotated
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.amconll.AMConllUnannotatedDatasetReader'> from params {'token_indexers': {'tokens': {'lowercase_tokens': True, 'type': 'single_id'}}} and extras {'vocab'}
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.token_indexer.TokenIndexer'> from params {'lowercase_tokens': True, 'type': 'single_id'} and extras {'vocab'}
+2022-06-07 15:41:45,522 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.type = single_id
+2022-06-07 15:41:45,522 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer'> from params {'lowercase_tokens': True} and extras {'vocab'}
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.namespace = tokens
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.lowercase_tokens = True
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.start_tokens = None
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.end_tokens = None
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.token_indexers.tokens.token_min_padding_length = 0
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.lazy = False
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.fraction = 1.0
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.only_read_fraction_if_train_in_filename = False
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.dataset_reader.allow_copy_despite_sense = False
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.k = 4
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.give_up = 15
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.threads = 1
+2022-06-07 15:41:45,523 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.iterators.data_iterator.DataIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'} and extras {'vocab'}
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.type = same_formalism
+2022-06-07 15:41:45,523 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.same_formalism_iterator.SameFormalismIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017']} and extras {'vocab'}
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.formalisms = ['AMR-2017']
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.batch_size = 1
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.batch_sizes = None
+2022-06-07 15:41:45,523 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.cache_instances = False
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.track_epoch = False
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.padding_noise = 0.1
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.instances_per_epoch = None
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.max_instances_in_memory = None
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.maximum_samples_per_batch = None
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.data_iterator.biggest_batch_first = False
+2022-06-07 15:41:45,524 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BaseEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}, 'type': 'bash_evaluation_command'} and extras {'vocab'}
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.evaluation_command.type = bash_evaluation_command
+2022-06-07 15:41:45,524 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.evaluation.commands.BashEvaluationCommand'> from params {'command': 'java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt', 'result_regexes': {'F': [2, 'F-score: (?P<value>.+)'], 'P': [0, 'Precision: (?P<value>.+)'], 'R': [1, 'Recall: (?P<value>.+)']}} and extras {'vocab'}
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.evaluation_command.command = java -cp am-tools.jar de.saar.coli.amtools.evaluation.EvaluateAMConll --corpus {system_output} -o {tmp}/ -et AMRFromNodeLabelsEvaluationToolset && python2 external_eval_tools//smatch/smatch.py -f {tmp}/parserOut.txt {gold_file} --pr --significant 4 > {tmp}/metrics.txt && cat {tmp}/metrics.txt
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.evaluation_command.show_output = True
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.batch_size = 64
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.predictor.give_up_k_1 = None
+2022-06-07 15:41:45,524 - INFO - allennlp.common.params - model.tasks.0.validation_evaluator.use_from_epoch = 10
+2022-06-07 15:41:45,524 - INFO - graph_dependency_parser.inside_maximization.AMAutomataTask - Found POS tags corresponding to the following punctuation : {}. Ignoring words with these POS tags for evaluation.
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.num_embeddings = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.vocab_namespace = pos
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.embedding_dim = 2
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.pretrained_file = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.projection_dim = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.trainable = True
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.padding_index = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.max_norm = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.norm_type = 2.0
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.scale_grad_by_freq = False
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.pos_tag_embedding.sparse = False
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.num_embeddings = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.vocab_namespace = lemmas
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.embedding_dim = 2
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.pretrained_file = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.projection_dim = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.trainable = True
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.padding_index = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.max_norm = None
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.norm_type = 2.0
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.scale_grad_by_freq = False
+2022-06-07 15:41:45,525 - INFO - allennlp.common.params - model.lemma_embedding.sparse = False
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.num_embeddings = None
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.vocab_namespace = ner_labels
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.embedding_dim = 2
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.pretrained_file = None
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.projection_dim = None
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.trainable = True
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.padding_index = None
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.max_norm = None
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.norm_type = 2.0
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.scale_grad_by_freq = False
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.ne_embedding.sparse = False
+2022-06-07 15:41:45,526 - INFO - allennlp.common.params - model.input_dropout = 0
+2022-06-07 15:41:45,526 - INFO - allennlp.nn.initializers - Initializing parameters
+2022-06-07 15:41:45,526 - INFO - allennlp.nn.initializers - Done initializing parameters; the following parameters are using their default initialization from their code
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.arc_out_layer.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.child_arc_feedforward.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.child_label_feedforward.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_arc_feedforward.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_arc_feedforward.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_label_feedforward.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.head_label_feedforward.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.label_out_layer.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.edge_model.label_out_layer.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.mlp._linear_layers.0.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.mlp._linear_layers.0.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.output_layer.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.lexlabeltagger.output_layer.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.mlp._linear_layers.0.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.mlp._linear_layers.0.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.output_layer.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    AMR-2017.supertagger.output_layer.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    _head_sentinel
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    _lemma_embedding.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    _ne_embedding.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    _pos_tag_embedding.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.backward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,527 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_parsing._module.forward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.backward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    encoder.encoder_tagging._module.forward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,528 - INFO - allennlp.nn.initializers -    text_field_embedder.token_embedder_tokens.weight
+2022-06-07 15:41:45,529 - INFO - allennlp.common.from_params - instantiating class <class 'allennlp.data.iterators.data_iterator.DataIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017'], 'type': 'same_formalism'} and extras set()
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.type = same_formalism
+2022-06-07 15:41:45,529 - INFO - allennlp.common.from_params - instantiating class <class 'graph_dependency_parser.components.dataset_readers.same_formalism_iterator.SameFormalismIterator'> from params {'batch_size': 1, 'formalisms': ['AMR-2017']} and extras set()
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.formalisms = ['AMR-2017']
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.batch_size = 1
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.batch_sizes = None
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.cache_instances = False
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.track_epoch = False
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.padding_noise = 0.1
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.instances_per_epoch = None
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.max_instances_in_memory = None
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.maximum_samples_per_batch = None
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - iterator.biggest_batch_first = False
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - validation_iterator = None
+2022-06-07 15:41:45,529 - INFO - allennlp.common.params - trainer.no_grad = ()
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - Following parameters are Frozen  (without gradient):
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - Following parameters are Tunable (with gradient):
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - _head_sentinel
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - text_field_embedder.token_embedder_tokens.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.forward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_parsing._module.backward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_0.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_0.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_0.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.forward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_1.input_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_1.state_linearity.weight
+2022-06-07 15:41:45,530 - INFO - graph_dependency_parser.train.amtrainer - encoder.encoder_tagging._module.backward_layer_1.state_linearity.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - _pos_tag_embedding.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - _lemma_embedding.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - _ne_embedding.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_arc_feedforward.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_arc_feedforward.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.child_arc_feedforward.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.arc_out_layer.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_label_feedforward.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.head_label_feedforward.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.child_label_feedforward.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.label_out_layer.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.edge_model.label_out_layer.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.mlp._linear_layers.0.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.mlp._linear_layers.0.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.output_layer.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.supertagger.output_layer.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.mlp._linear_layers.0.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.mlp._linear_layers.0.bias
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.output_layer.weight
+2022-06-07 15:41:45,531 - INFO - graph_dependency_parser.train.amtrainer - AMR-2017.lexlabeltagger.output_layer.bias
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.patience = 1000
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.validation_metric = +AMR-2017_F
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.shuffle = True
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.num_epochs = 100
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.cuda_device = 1
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.grad_norm = None
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.grad_clipping = None
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.learning_rate_scheduler = None
+2022-06-07 15:41:45,531 - INFO - allennlp.common.params - trainer.momentum_scheduler = None
+2022-06-07 15:41:50,138 - INFO - allennlp.common.params - trainer.optimizer.type = adam
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.optimizer.parameter_groups = None
+2022-06-07 15:41:50,139 - INFO - allennlp.training.optimizers - Number of trainable parameters: 7129
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.optimizer.infer_type_and_cast = True
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - Converting Params object to dict; logging of default values will not occur when dictionary parameters are used subsequently.
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - CURRENTLY DEFINED PARAMETERS: 
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.optimizer.lr = 0.01
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.num_serialized_models_to_keep = 1
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.keep_serialized_model_every_num_seconds = None
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.model_save_interval = None
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.summary_interval = 100
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.histogram_interval = None
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.should_log_parameter_statistics = True
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.should_log_learning_rate = False
+2022-06-07 15:41:50,139 - INFO - allennlp.common.params - trainer.log_batch_size_period = None
+2022-06-07 15:41:50,242 - INFO - graph_dependency_parser.train.amtrainer - Beginning training.
+2022-06-07 15:41:50,243 - INFO - graph_dependency_parser.train.amtrainer - Epoch 0/99
+2022-06-07 15:41:50,243 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3245.36
+2022-06-07 15:41:50,399 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:50,399 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1079
+2022-06-07 15:41:50,400 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:50,400 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:50,400 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:50,400 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:50,400 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:50,400 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:50,401 - INFO - graph_dependency_parser.train.amtrainer - Training
   0%|          | 0/1 [00:00<?, ?it/s]
-2022-06-01 18:36:31,448 - ERROR - allennlp.data.vocabulary - Namespace: AMR-2017_lex_labels
-2022-06-01 18:36:31,448 - ERROR - allennlp.data.vocabulary - Token: _
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -14.5200, AMR-2017_Loss_Minus_Insides: 12.4405, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00,  9.80it/s]
+
+2022-06-07 15:41:50,505 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -14.4268, AMR-2017_Loss_Minus_Insides: 12.3474, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 48.20it/s]
+
+2022-06-07 15:41:50,527 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:50,527 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3245.360  |       N/A
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -14.520  |   -14.427
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:50,528 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,529 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,529 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:50,530 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:50,530 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1079.000  |       N/A
+2022-06-07 15:41:50,531 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,531 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    12.441  |    12.347
+2022-06-07 15:41:50,531 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,539 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:50,539 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:50,539 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:29
+2022-06-07 15:41:50,539 - INFO - graph_dependency_parser.train.amtrainer - Epoch 1/99
+2022-06-07 15:41:50,539 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3259.9
+2022-06-07 15:41:50,685 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:50,685 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:50,686 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:50,686 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:50,686 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:50,686 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:50,686 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:50,686 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:50,688 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -14.4268, AMR-2017_Loss_Minus_Insides: 12.3474, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 13.90it/s]
+
+2022-06-07 15:41:50,762 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -14.1080, AMR-2017_Loss_Minus_Insides: 12.0286, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 52.72it/s]
+
+2022-06-07 15:41:50,782 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:50,782 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:50,782 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3259.900  |       N/A
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -14.427  |   -14.108
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:50,783 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,784 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,784 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:50,784 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:50,785 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:50,785 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,785 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    12.347  |    12.029
+2022-06-07 15:41:50,785 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:50,793 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:50,794 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:50,794 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:27
+2022-06-07 15:41:50,794 - INFO - graph_dependency_parser.train.amtrainer - Epoch 2/99
+2022-06-07 15:41:50,794 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3259.968
+2022-06-07 15:41:50,941 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:50,941 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:50,941 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:50,941 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:50,941 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:50,941 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:50,942 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:50,942 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:50,943 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -14.1080, AMR-2017_Loss_Minus_Insides: 12.0286, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 13.25it/s]
+
+2022-06-07 15:41:51,022 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -13.7417, AMR-2017_Loss_Minus_Insides: 11.6623, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 46.62it/s]
+
+2022-06-07 15:41:51,044 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:51,044 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:51,044 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,045 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:51,045 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3259.968  |       N/A
+2022-06-07 15:41:51,045 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,045 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:51,045 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -14.108  |   -13.742
+2022-06-07 15:41:51,045 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,046 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:51,046 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:51,046 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,046 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,046 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:51,047 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:51,047 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:51,047 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,047 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    12.029  |    11.662
+2022-06-07 15:41:51,048 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,054 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:51,055 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:51,055 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:26
+2022-06-07 15:41:51,055 - INFO - graph_dependency_parser.train.amtrainer - Epoch 3/99
+2022-06-07 15:41:51,055 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.044
+2022-06-07 15:41:51,207 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:51,207 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:51,208 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:51,208 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:51,208 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:51,208 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:51,208 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:51,208 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:51,210 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -13.7417, AMR-2017_Loss_Minus_Insides: 11.6623, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 15.92it/s]
+
+2022-06-07 15:41:51,274 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -13.3510, AMR-2017_Loss_Minus_Insides: 11.2716, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 54.89it/s]
+
+2022-06-07 15:41:51,293 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:51,293 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:51,293 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3260.044  |       N/A
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -13.742  |   -13.351
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,294 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:51,295 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:51,295 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,295 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,295 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:51,295 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:51,295 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:51,296 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,296 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    11.662  |    11.272
+2022-06-07 15:41:51,296 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,302 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:51,303 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:51,303 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:25
+2022-06-07 15:41:51,303 - INFO - graph_dependency_parser.train.amtrainer - Epoch 4/99
+2022-06-07 15:41:51,303 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.116
+2022-06-07 15:41:51,458 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:51,458 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:51,458 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:51,458 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:51,458 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:51,459 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:51,459 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:51,459 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:51,460 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -13.3510, AMR-2017_Loss_Minus_Insides: 11.2716, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 14.13it/s]
+
+2022-06-07 15:41:51,534 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.9395, AMR-2017_Loss_Minus_Insides: 10.8601, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 50.28it/s]
+
+2022-06-07 15:41:51,555 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:51,555 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:51,555 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,555 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:51,555 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3260.116  |       N/A
+2022-06-07 15:41:51,555 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,555 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:51,556 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -13.351  |   -12.940
+2022-06-07 15:41:51,556 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,557 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:51,557 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:51,557 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,557 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,558 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:51,558 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:51,558 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:51,558 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,558 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    11.272  |    10.860
+2022-06-07 15:41:51,558 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,565 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:51,565 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:51,565 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:25
+2022-06-07 15:41:51,565 - INFO - graph_dependency_parser.train.amtrainer - Epoch 5/99
+2022-06-07 15:41:51,565 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.164
+2022-06-07 15:41:51,719 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:51,719 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:51,720 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:51,720 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:51,720 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:51,720 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:51,720 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:51,720 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:51,721 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.9395, AMR-2017_Loss_Minus_Insides: 10.8601, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 15.73it/s]
+
+2022-06-07 15:41:51,787 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.5089, AMR-2017_Loss_Minus_Insides: 10.4295, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 48.12it/s]
+
+2022-06-07 15:41:51,809 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3260.164  |       N/A
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:51,809 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -12.940  |   -12.509
+2022-06-07 15:41:51,810 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,810 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:51,810 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:51,810 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,810 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,811 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:51,811 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:51,811 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:51,811 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,811 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    10.860  |    10.429
+2022-06-07 15:41:51,812 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:51,823 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:51,824 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:51,824 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:24
+2022-06-07 15:41:51,824 - INFO - graph_dependency_parser.train.amtrainer - Epoch 6/99
+2022-06-07 15:41:51,824 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.336
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:52,003 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:52,004 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.5089, AMR-2017_Loss_Minus_Insides: 10.4295, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 17.23it/s]
+
+2022-06-07 15:41:52,063 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.0637, AMR-2017_Loss_Minus_Insides: 9.9843, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 54.00it/s]
+
+2022-06-07 15:41:52,083 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:52,083 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:52,083 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,083 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:52,083 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3260.336  |       N/A
+2022-06-07 15:41:52,084 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,084 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:52,084 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -12.509  |   -12.064
+2022-06-07 15:41:52,084 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,084 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:52,084 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.250
+2022-06-07 15:41:52,085 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,085 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,085 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.250
+2022-06-07 15:41:52,085 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:52,085 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:52,085 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,086 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |    10.429  |     9.984
+2022-06-07 15:41:52,086 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,092 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:52,093 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:52,093 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:24
+2022-06-07 15:41:52,093 - INFO - graph_dependency_parser.train.amtrainer - Epoch 7/99
+2022-06-07 15:41:52,093 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.38
+2022-06-07 15:41:52,641 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:52,641 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:52,641 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:52,642 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:52,642 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:52,642 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:52,642 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:52,642 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:52,643 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.0637, AMR-2017_Loss_Minus_Insides: 9.9843, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 15.09it/s]
+
+2022-06-07 15:41:52,711 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.5000, AMR-2017_LAS: 0.5000, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.8781, AMR-2017_Loss_Minus_Insides: 9.7986, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 54.70it/s]
+
+2022-06-07 15:41:52,730 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:52,730 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3260.380  |       N/A
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -12.064  |   -11.878
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:52,731 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.250  |     0.500
+2022-06-07 15:41:52,732 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,732 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,732 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.250  |     0.500
+2022-06-07 15:41:52,733 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:52,733 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:52,733 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,733 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |     9.984  |     9.799
+2022-06-07 15:41:52,734 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:52,740 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:52,740 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:52,740 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:28
+2022-06-07 15:41:52,740 - INFO - graph_dependency_parser.train.amtrainer - Epoch 8/99
+2022-06-07 15:41:52,740 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.456
+2022-06-07 15:41:52,900 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:52,901 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:52,901 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:52,901 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:52,901 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:52,901 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:52,902 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:52,902 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:52,904 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.5000, AMR-2017_LAS: 0.5000, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.8781, AMR-2017_Loss_Minus_Insides: 9.7986, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 13.06it/s]
+
+2022-06-07 15:41:52,983 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.5000, AMR-2017_LAS: 0.5000, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.4305, AMR-2017_Loss_Minus_Insides: 9.3511, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 50.40it/s]
+
+2022-06-07 15:41:53,004 - WARNING - graph_dependency_parser.train.amtrainer - Validation metric AMR-2017_F not found (yet)
+2022-06-07 15:41:53,004 - INFO - allennlp.training.tensorboard_writer -                                 Training |  Validation
+2022-06-07 15:41:53,004 - INFO - allennlp.training.tensorboard_writer - gpu_4_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,004 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Label_Acc          |     0.000  |     0.000
+2022-06-07 15:41:53,004 - INFO - allennlp.training.tensorboard_writer - cpu_memory_MB               |  3260.456  |       N/A
+2022-06-07 15:41:53,004 - INFO - allennlp.training.tensorboard_writer - gpu_5_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,004 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LEM                |     0.000  |     0.000
+2022-06-07 15:41:53,005 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Average_Insides    |   -11.878  |   -11.431
+2022-06-07 15:41:53,005 - INFO - allennlp.training.tensorboard_writer - gpu_0_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,005 - INFO - allennlp.training.tensorboard_writer - loss                        |    -2.079  |    -2.079
+2022-06-07 15:41:53,005 - INFO - allennlp.training.tensorboard_writer - AMR-2017_LAS                |     0.500  |     0.500
+2022-06-07 15:41:53,005 - INFO - allennlp.training.tensorboard_writer - gpu_2_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,005 - INFO - allennlp.training.tensorboard_writer - gpu_7_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,006 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UAS                |     0.500  |     0.500
+2022-06-07 15:41:53,006 - INFO - allennlp.training.tensorboard_writer - AMR-2017_UEM                |     0.000  |     0.000
+2022-06-07 15:41:53,007 - INFO - allennlp.training.tensorboard_writer - gpu_1_memory_MB             |  1081.000  |       N/A
+2022-06-07 15:41:53,007 - INFO - allennlp.training.tensorboard_writer - gpu_6_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,007 - INFO - allennlp.training.tensorboard_writer - AMR-2017_Loss_Minus_Insides |     9.799  |     9.351
+2022-06-07 15:41:53,007 - INFO - allennlp.training.tensorboard_writer - gpu_3_memory_MB             |    12.000  |       N/A
+2022-06-07 15:41:53,015 - INFO - allennlp.training.checkpointer - Best validation performance so far. Copying weights to './trained_amr_label_seq_model//best.th'.
+2022-06-07 15:41:53,015 - INFO - graph_dependency_parser.train.amtrainer - Epoch duration: 00:00:00
+2022-06-07 15:41:53,015 - INFO - graph_dependency_parser.train.amtrainer - Estimated training time remaining: 0:00:28
+2022-06-07 15:41:53,015 - INFO - graph_dependency_parser.train.amtrainer - Epoch 9/99
+2022-06-07 15:41:53,015 - INFO - graph_dependency_parser.train.amtrainer - Peak CPU memory usage MB: 3260.504
+2022-06-07 15:41:53,151 - INFO - graph_dependency_parser.train.amtrainer - GPU 0 memory usage MB: 12
+2022-06-07 15:41:53,151 - INFO - graph_dependency_parser.train.amtrainer - GPU 1 memory usage MB: 1081
+2022-06-07 15:41:53,151 - INFO - graph_dependency_parser.train.amtrainer - GPU 2 memory usage MB: 12
+2022-06-07 15:41:53,152 - INFO - graph_dependency_parser.train.amtrainer - GPU 3 memory usage MB: 12
+2022-06-07 15:41:53,152 - INFO - graph_dependency_parser.train.amtrainer - GPU 4 memory usage MB: 12
+2022-06-07 15:41:53,152 - INFO - graph_dependency_parser.train.amtrainer - GPU 5 memory usage MB: 12
+2022-06-07 15:41:53,152 - INFO - graph_dependency_parser.train.amtrainer - GPU 6 memory usage MB: 12
+2022-06-07 15:41:53,152 - INFO - graph_dependency_parser.train.amtrainer - GPU 7 memory usage MB: 12
+2022-06-07 15:41:53,154 - INFO - graph_dependency_parser.train.amtrainer - Training
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.2500, AMR-2017_LAS: 0.2500, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.4305, AMR-2017_Loss_Minus_Insides: 9.3511, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 12.93it/s]
+
+2022-06-07 15:41:53,233 - INFO - graph_dependency_parser.train.amtrainer - Validating
+  0%|          | 0/1 [00:00<?, ?it/s]
+AMR-2017_UAS: 0.5000, AMR-2017_LAS: 0.5000, AMR-2017_UEM: 0.0000, AMR-2017_LEM: 0.0000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.0059, AMR-2017_Loss_Minus_Insides: 8.9264, loss: -2.0794 ||: 100%|##########| 1/1 [00:00<00:00, 52.10it/s]
+
+0it [00:00, ?it/s]
+2022-06-07 15:41:53,254 - INFO - graph_dependency_parser.components.dataset_readers.amconll - Reading AM dependency trees from amconll dataset at: example/minimalAMRLabelSequenceAutomata/corpus.amconll
+1it [00:00, 2189.09it/s]
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|##########| 1/1 [00:00<00:00, 133.26it/s]
+
+Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.UnsupportedClassVersionError: de/up/ling/irtg/algebra/ParserException has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:468)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:74)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:369)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:363)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:362)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+	at java.lang.Class.privateGetMethodRecursive(Class.java:3048)
+	at java.lang.Class.getMethod0(Class.java:3018)
+	at java.lang.Class.getMethod(Class.java:1784)
+	at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:650)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:632)
 Traceback (most recent call last):
   File "train.py", line 217, in <module>
     metrics = trainer.train(experiment, model_path = serialization_dir)
-  File "/local/tprakap/am-parser/graph_dependency_parser/train/amtrainer.py", line 509, in train
-    train_metrics = self._train_epoch(epoch)
-  File "/local/tprakap/am-parser/graph_dependency_parser/train/amtrainer.py", line 347, in _train_epoch
-    loss = self.batch_loss(batch_group, for_training=True)
-  File "/local/tprakap/am-parser/graph_dependency_parser/train/amtrainer.py", line 288, in batch_loss
-    output_dict = self.model(**batch)
-  File "/proj/irtg.shadow/conda/envs/allennlp/lib/python3.7/site-packages/torch/nn/modules/module.py", line 493, in __call__
-    result = self.forward(*input, **kwargs)
-  File "/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/graph_dependency_parser_automata.py", line 262, in forward
-    rule_index, rule_mask, lexlabels, head_indices, lemma_copying, token_copying)
-  File "/proj/irtg.shadow/conda/envs/allennlp/lib/python3.7/site-packages/torch/nn/modules/module.py", line 493, in __call__
-    result = self.forward(*input, **kwargs)
-  File "/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py", line 246, in forward
-    bottom_lex_label_index = self.vocab.get_token_index("_", namespace=self.name + "_lex_labels")
-  File "/proj/irtg.shadow/conda/envs/allennlp/lib/python3.7/site-packages/allennlp/data/vocabulary.py", line 630, in get_token_index
-    return self._token_to_index[namespace][self._oov_token]
-KeyError: '@@UNKNOWN@@'
-
+  File "/local/tprakap/am-parser/graph_dependency_parser/train/amtrainer.py", line 526, in train
+    val_metrics = self.model.get_metrics(reset=True, model_path = model_path)
+  File "/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/graph_dependency_parser_automata.py", line 292, in get_metrics
+    for metric, val in task.metrics(parser_model=self, reset=reset, model_path=model_path).items():
+  File "/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py", line 828, in metrics
+    metrics = self.validation_evaluator.eval(parser_model, self.current_epoch, model_path)
+  File "/local/tprakap/am-parser/graph_dependency_parser/components/evaluation/predictors.py", line 252, in eval
+    return self.predictor.parse_and_eval(self.formalism, self.system_input, self.gold_file, filename=filename)
+  File "/local/tprakap/am-parser/graph_dependency_parser/components/evaluation/predictors.py", line 93, in parse_and_eval
+    return self.evaluation_command.evaluate(filename, gold_file)
+  File "/local/tprakap/am-parser/graph_dependency_parser/components/evaluation/commands.py", line 78, in evaluate
+    m = re.search(regex, result_lines[line_number])
+IndexError: list index out of range
