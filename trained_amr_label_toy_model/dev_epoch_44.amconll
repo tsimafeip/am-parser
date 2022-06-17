@@ -1,0 +1,15 @@
+#git:10372aadab183560ad77c96587ea3393182ab85a
+#framework:unknown
+#id:DF-200-192400-625_7557.36
+#batch_size:1
+#normalized_nn_time:0.012922525405883789
+#normalized_prepare_ftd_time:0.0010046958923339844
+#host:d257b83ec766
+#parser:ftd
+#parsing_time:0.0022258758544921875
+#k-supertags:4
+1	possible-01	_	_	_	_	(p<root> / --LEX--  :ARG1 (o<S0>))	$FORM$	(S0())	0	ROOT	True
+2	overcome-01	_	_	_	_	(o<root> / --LEX--  :ARG0 (y<S1>)  :ARG1 (i<S0>))	$FORM$	(S0(), S1())	1	APP_S0	True
+3	you	_	_	_	_	(i<root> / --LEX--)	$FORM$	()	2	APP_S0	True
+4	it	_	_	_	_	(i<root> / --LEX--)	$FORM$	()	2	APP_S1	True
+
