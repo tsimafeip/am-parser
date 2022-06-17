@@ -1,6 +1,0 @@
-(i<root> / --LEX--)--TYPE--()
-(p<root> / --LEX--  :ARG1 (o<S1>))--TYPE--(S1())
-(o<root> / --LEX--  :ARG0 (y<S1>)  :ARG1 (i<S0>))--TYPE--(S0(), S1())
-(o<root> / --LEX--  :ARG0 (y<S0>)  :ARG1 (i<S1>))--TYPE--(S0(), S1())
-(p<root> / --LEX--  :ARG1 (o<S0>))--TYPE--(S0())
-_--TYPE--_
