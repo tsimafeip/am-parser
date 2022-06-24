@@ -1,78 +1,26 @@
 0it [00:00, ?it/s]
-2600it [00:10, 259.96it/s]
-5200it [00:20, 259.95it/s]
-6304it [00:24, 256.54it/s]
-
 0it [00:00, ?it/s]
-115it [00:00, 211.44it/s]
 
-0it [00:00, ?it/s]
-6419it [00:00, 54465.75it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
-/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py:782: UserWarning: masked_fill_ received a mask with dtype torch.uint8, this behavior is now deprecated,please use a mask with dtype torch.bool instead. (Triggered internally at  ../aten/src/ATen/native/cuda/Indexing.cu:967.)
-  existence_scores.masked_fill_(minus_mask, -numpy.inf)
-AMR-2017_UAS: 0.4639, AMR-2017_LAS: 0.4639, AMR-2017_UEM: 0.2885, AMR-2017_LEM: 0.2885, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -26.1399, AMR-2017_Loss_Minus_Insides: -71.9890, loss: -98.1289 ||:  20%|#9        | 39/197 [00:10<00:41,  3.84it/s]
-AMR-2017_UAS: 0.5360, AMR-2017_LAS: 0.5360, AMR-2017_UEM: 0.3520, AMR-2017_LEM: 0.3520, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -20.8850, AMR-2017_Loss_Minus_Insides: -75.8321, loss: -96.7171 ||:  48%|####8     | 95/197 [00:20<00:20,  4.87it/s]
-AMR-2017_UAS: 0.5989, AMR-2017_LAS: 0.5989, AMR-2017_UEM: 0.3885, AMR-2017_LEM: 0.3885, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -19.2015, AMR-2017_Loss_Minus_Insides: -77.1136, loss: -96.3150 ||:  77%|#######6  | 151/197 [00:30<00:09,  5.04it/s]
-AMR-2017_UAS: 0.6382, AMR-2017_LAS: 0.6382, AMR-2017_UEM: 0.4156, AMR-2017_LEM: 0.4156, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -17.9555, AMR-2017_Loss_Minus_Insides: -78.7228, loss: -96.6783 ||: 100%|##########| 197/197 [00:39<00:00,  5.03it/s]
-
-  0%|          | 0/4 [00:00<?, ?it/s]
-AMR-2017_UAS: 0.7313, AMR-2017_LAS: 0.7313, AMR-2017_UEM: 0.3739, AMR-2017_LEM: 0.3739, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -19.8521, AMR-2017_Loss_Minus_Insides: -78.2294, loss: -98.0816 ||: 100%|##########| 4/4 [00:00<00:00,  7.89it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
-/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py:782: UserWarning: masked_fill_ received a mask with dtype torch.uint8, this behavior is now deprecated,please use a mask with dtype torch.bool instead. (Triggered internally at  ../aten/src/ATen/native/cuda/Indexing.cu:967.)
-  existence_scores.masked_fill_(minus_mask, -numpy.inf)
-AMR-2017_UAS: 0.7482, AMR-2017_LAS: 0.7482, AMR-2017_UEM: 0.5156, AMR-2017_LEM: 0.5156, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -14.1196, AMR-2017_Loss_Minus_Insides: -83.6219, loss: -97.7414 ||:  23%|##3       | 46/197 [00:10<00:33,  4.53it/s]
-AMR-2017_UAS: 0.7734, AMR-2017_LAS: 0.7734, AMR-2017_UEM: 0.5225, AMR-2017_LEM: 0.5225, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.8617, AMR-2017_Loss_Minus_Insides: -82.2165, loss: -95.0782 ||:  51%|#####     | 100/197 [00:20<00:19,  5.00it/s]
-AMR-2017_UAS: 0.7857, AMR-2017_LAS: 0.7857, AMR-2017_UEM: 0.5087, AMR-2017_LEM: 0.5087, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.8555, AMR-2017_Loss_Minus_Insides: -83.6502, loss: -96.5056 ||:  78%|#######8  | 154/197 [00:31<00:08,  4.93it/s]
-AMR-2017_UAS: 0.7922, AMR-2017_LAS: 0.7922, AMR-2017_UEM: 0.5044, AMR-2017_LEM: 0.5044, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.7387, AMR-2017_Loss_Minus_Insides: -84.3014, loss: -97.0401 ||: 100%|##########| 197/197 [00:39<00:00,  5.01it/s]
-
-  0%|          | 0/4 [00:00<?, ?it/s]
-AMR-2017_UAS: 0.7460, AMR-2017_LAS: 0.7460, AMR-2017_UEM: 0.4087, AMR-2017_LEM: 0.4087, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -17.5969, AMR-2017_Loss_Minus_Insides: -80.4621, loss: -98.0590 ||: 100%|##########| 4/4 [00:00<00:00,  8.26it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
-/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py:782: UserWarning: masked_fill_ received a mask with dtype torch.uint8, this behavior is now deprecated,please use a mask with dtype torch.bool instead. (Triggered internally at  ../aten/src/ATen/native/cuda/Indexing.cu:967.)
-  existence_scores.masked_fill_(minus_mask, -numpy.inf)
-AMR-2017_UAS: 0.7700, AMR-2017_LAS: 0.7700, AMR-2017_UEM: 0.4621, AMR-2017_LEM: 0.4621, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -15.0392, AMR-2017_Loss_Minus_Insides: -83.0144, loss: -98.0536 ||:  21%|##1       | 42/197 [00:10<00:37,  4.16it/s]
-AMR-2017_UAS: 0.8041, AMR-2017_LAS: 0.8041, AMR-2017_UEM: 0.5397, AMR-2017_LEM: 0.5397, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.0707, AMR-2017_Loss_Minus_Insides: -83.9725, loss: -96.0432 ||:  51%|#####     | 100/197 [00:20<00:19,  5.08it/s]
-AMR-2017_UAS: 0.8074, AMR-2017_LAS: 0.8074, AMR-2017_UEM: 0.5318, AMR-2017_LEM: 0.5318, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -12.0141, AMR-2017_Loss_Minus_Insides: -84.8167, loss: -96.8307 ||:  80%|########  | 158/197 [00:31<00:07,  5.01it/s]
-AMR-2017_UAS: 0.8152, AMR-2017_LAS: 0.8152, AMR-2017_UEM: 0.5360, AMR-2017_LEM: 0.5360, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.5721, AMR-2017_Loss_Minus_Insides: -85.1352, loss: -96.7073 ||: 100%|##########| 197/197 [00:39<00:00,  4.98it/s]
-
-  0%|          | 0/4 [00:00<?, ?it/s]
-AMR-2017_UAS: 0.7848, AMR-2017_LAS: 0.7848, AMR-2017_UEM: 0.4000, AMR-2017_LEM: 0.4000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -16.1409, AMR-2017_Loss_Minus_Insides: -81.9444, loss: -98.0853 ||: 100%|##########| 4/4 [00:00<00:00,  8.06it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
-/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py:782: UserWarning: masked_fill_ received a mask with dtype torch.uint8, this behavior is now deprecated,please use a mask with dtype torch.bool instead. (Triggered internally at  ../aten/src/ATen/native/cuda/Indexing.cu:967.)
-  existence_scores.masked_fill_(minus_mask, -numpy.inf)
-AMR-2017_UAS: 0.8488, AMR-2017_LAS: 0.8488, AMR-2017_UEM: 0.5913, AMR-2017_LEM: 0.5913, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.2077, AMR-2017_Loss_Minus_Insides: -85.7383, loss: -94.9460 ||:  25%|##5       | 50/197 [00:10<00:29,  4.97it/s]
-AMR-2017_UAS: 0.8265, AMR-2017_LAS: 0.8265, AMR-2017_UEM: 0.5715, AMR-2017_LEM: 0.5715, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -10.8125, AMR-2017_Loss_Minus_Insides: -84.3264, loss: -95.1388 ||:  51%|#####1    | 101/197 [00:20<00:19,  4.98it/s]
-AMR-2017_UAS: 0.8287, AMR-2017_LAS: 0.8287, AMR-2017_UEM: 0.5567, AMR-2017_LEM: 0.5567, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -10.9414, AMR-2017_Loss_Minus_Insides: -85.3316, loss: -96.2731 ||:  77%|#######6  | 151/197 [00:30<00:09,  4.93it/s]
-AMR-2017_UAS: 0.8337, AMR-2017_LAS: 0.8337, AMR-2017_UEM: 0.5600, AMR-2017_LEM: 0.5600, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -10.7064, AMR-2017_Loss_Minus_Insides: -85.5978, loss: -96.3042 ||: 100%|##########| 197/197 [00:39<00:00,  5.02it/s]
-
-  0%|          | 0/4 [00:00<?, ?it/s]
-AMR-2017_UAS: 0.7781, AMR-2017_LAS: 0.7781, AMR-2017_UEM: 0.4000, AMR-2017_LEM: 0.4000, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -16.1844, AMR-2017_Loss_Minus_Insides: -81.4538, loss: -97.6382 ||: 100%|##########| 4/4 [00:00<00:00,  8.08it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
-/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py:782: UserWarning: masked_fill_ received a mask with dtype torch.uint8, this behavior is now deprecated,please use a mask with dtype torch.bool instead. (Triggered internally at  ../aten/src/ATen/native/cuda/Indexing.cu:967.)
-  existence_scores.masked_fill_(minus_mask, -numpy.inf)
-AMR-2017_UAS: 0.8566, AMR-2017_LAS: 0.8566, AMR-2017_UEM: 0.5808, AMR-2017_LEM: 0.5808, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.5326, AMR-2017_Loss_Minus_Insides: -87.0339, loss: -96.5665 ||:  23%|##3       | 46/197 [00:10<00:33,  4.55it/s]
-AMR-2017_UAS: 0.8489, AMR-2017_LAS: 0.8489, AMR-2017_UEM: 0.5725, AMR-2017_LEM: 0.5725, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.8744, AMR-2017_Loss_Minus_Insides: -87.3402, loss: -97.2147 ||:  51%|#####     | 100/197 [00:20<00:19,  5.02it/s]
-AMR-2017_UAS: 0.8473, AMR-2017_LAS: 0.8473, AMR-2017_UEM: 0.5814, AMR-2017_LEM: 0.5814, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.8056, AMR-2017_Loss_Minus_Insides: -85.9740, loss: -95.7796 ||:  78%|#######8  | 154/197 [00:31<00:08,  5.01it/s]
-AMR-2017_UAS: 0.8445, AMR-2017_LAS: 0.8445, AMR-2017_UEM: 0.5811, AMR-2017_LEM: 0.5811, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -10.1180, AMR-2017_Loss_Minus_Insides: -86.4789, loss: -96.5969 ||: 100%|##########| 197/197 [00:39<00:00,  4.95it/s]
-
-  0%|          | 0/4 [00:00<?, ?it/s]
-AMR-2017_UAS: 0.7981, AMR-2017_LAS: 0.7981, AMR-2017_UEM: 0.4435, AMR-2017_LEM: 0.4435, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -15.6793, AMR-2017_Loss_Minus_Insides: -82.3495, loss: -98.0288 ||: 100%|##########| 4/4 [00:00<00:00,  7.69it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
-/local/tprakap/am-parser/graph_dependency_parser/inside_maximization/AMAutomataTask.py:782: UserWarning: masked_fill_ received a mask with dtype torch.uint8, this behavior is now deprecated,please use a mask with dtype torch.bool instead. (Triggered internally at  ../aten/src/ATen/native/cuda/Indexing.cu:967.)
-  existence_scores.masked_fill_(minus_mask, -numpy.inf)
-AMR-2017_UAS: 0.8342, AMR-2017_LAS: 0.8342, AMR-2017_UEM: 0.5796, AMR-2017_LEM: 0.5796, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -11.7383, AMR-2017_Loss_Minus_Insides: -88.0600, loss: -99.7983 ||:  21%|##1       | 42/197 [00:10<00:37,  4.09it/s]
-AMR-2017_UAS: 0.8565, AMR-2017_LAS: 0.8565, AMR-2017_UEM: 0.6184, AMR-2017_LEM: 0.6184, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.4893, AMR-2017_Loss_Minus_Insides: -86.2793, loss: -95.7686 ||:  51%|#####     | 100/197 [00:20<00:19,  5.07it/s]
-AMR-2017_UAS: 0.8569, AMR-2017_LAS: 0.8569, AMR-2017_UEM: 0.6135, AMR-2017_LEM: 0.6135, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.4105, AMR-2017_Loss_Minus_Insides: -86.0240, loss: -95.4345 ||:  80%|########  | 158/197 [00:31<00:07,  5.15it/s]
-AMR-2017_UAS: 0.8558, AMR-2017_LAS: 0.8558, AMR-2017_UEM: 0.5987, AMR-2017_LEM: 0.5987, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -9.5736, AMR-2017_Loss_Minus_Insides: -86.7278, loss: -96.3014 ||: 100%|##########| 197/197 [00:39<00:00,  4.98it/s]
-
-  0%|          | 0/4 [00:00<?, ?it/s]
-AMR-2017_UAS: 0.7861, AMR-2017_LAS: 0.7861, AMR-2017_UEM: 0.3913, AMR-2017_LEM: 0.3913, AMR-2017_Label_Acc: 0.0000, AMR-2017_Average_Insides: -16.0361, AMR-2017_Loss_Minus_Insides: -81.6783, loss: -97.7143 ||: 100%|##########| 4/4 [00:00<00:00,  7.13it/s]
-
-  0%|          | 0/197 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "train.py", line 160, in <module>
+    pieces = TrainerPieces.from_params(params, serialization_dir, args.recover)  # pylint: disable=no-member
+  File "/local/tprakap/am-parser/graph_dependency_parser/train/amtrainer.py", line 825, in from_params
+    all_datasets = training_util.datasets_from_params(params)
+  File "/home/tprakap/.conda/envs/docker_allennlp/lib/python3.7/site-packages/allennlp/training/util.py", line 178, in datasets_from_params
+    train_data = dataset_reader.read(train_data_path)
+  File "/home/tprakap/.conda/envs/docker_allennlp/lib/python3.7/site-packages/allennlp/data/dataset_readers/dataset_reader.py", line 134, in read
+    instances = [instance for instance in Tqdm.tqdm(instances)]
+  File "/home/tprakap/.conda/envs/docker_allennlp/lib/python3.7/site-packages/allennlp/data/dataset_readers/dataset_reader.py", line 134, in <listcomp>
+    instances = [instance for instance in Tqdm.tqdm(instances)]
+  File "/home/tprakap/.conda/envs/docker_allennlp/lib/python3.7/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "/local/tprakap/am-parser/graph_dependency_parser/components/dataset_readers/amconll_automata.py", line 103, in _read
+    for instance in self._read_one_file(formalism, path):
+  File "/local/tprakap/am-parser/graph_dependency_parser/components/dataset_readers/amconll_automata.py", line 90, in _read_one_file
+    yield self._read_one_sentence(formalism, automata_zip_reader, i, am_sentence)
+  File "/local/tprakap/am-parser/graph_dependency_parser/components/dataset_readers/amconll_automata.py", line 93, in _read_one_sentence
+    automaton = automata_zip_reader.readAutomaton(position_in_corpus)
+  File "jnius/jnius_export_class.pxi", line 769, in jnius.JavaMethod.__call__
+  File "jnius/jnius_export_class.pxi", line 846, in jnius.JavaMethod.call_method
+  File "jnius/jnius_utils.pxi", line 91, in jnius.check_exception
+jnius.JavaException: JVM exception occurred: entry

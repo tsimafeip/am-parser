@@ -6,6 +6,7 @@ LABEL maintainer="tprakap@coli.uni-saarland.de"
 
 
 RUN apt-get update
+RUN apt-get -y install screen
 RUN apt-get -y install python2
 RUN apt-get -y install vim
 RUN apt-get -y install g++
