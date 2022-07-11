@@ -34,7 +34,7 @@ We recommend running am-parser using Docker environment.
 - Run container - `docker run --gpus all -it --name CONTAINER_NAME IMAGE_NAME bash`
 - Activate conda env inside container: `source /root/miniconda3/bin/activate`
 
-Later you can detach from container using `Ctrl-P + Ctrl-Q` command, and reconnect using `docker exec -it CONTAINER_NAME`.
+Later you can detach from the container using `Ctrl-P + Ctrl-Q` command, and reconnect using `docker attach CONTAINER_NAME`.
 
 
 **If you still have problems running the parser** check the list of [third party packages](https://github.com/coli-saar/am-parser/wiki/Third-Party-Packages) in the Wiki. This list also contains packages necessary to run branches other than the Master branch.
